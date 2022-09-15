@@ -1,0 +1,13 @@
+Z:\TUP\C2\Prog\U2\PilasYColas\obj\Debug\PilasYColas.csproj.AssemblyReference.cache
+Z:\TUP\C2\Prog\U2\PilasYColas\obj\Debug\PilasYColas.csproj.SuggestedBindingRedirects.cache
+Z:\TUP\C2\Prog\U2\PilasYColas\obj\Debug\PilasYColas.Presentacion.frmColas.resources
+Z:\TUP\C2\Prog\U2\PilasYColas\obj\Debug\PilasYColas.frmPilas.resources
+Z:\TUP\C2\Prog\U2\PilasYColas\obj\Debug\PilasYColas.frmPrincipal.resources
+Z:\TUP\C2\Prog\U2\PilasYColas\obj\Debug\PilasYColas.Properties.Resources.resources
+Z:\TUP\C2\Prog\U2\PilasYColas\obj\Debug\PilasYColas.csproj.GenerateResource.cache
+Z:\TUP\C2\Prog\U2\PilasYColas\obj\Debug\PilasYColas.csproj.CoreCompileInputs.cache
+Z:\TUP\C2\Prog\U2\PilasYColas\bin\Debug\PilasYColas.exe.config
+Z:\TUP\C2\Prog\U2\PilasYColas\bin\Debug\PilasYColas.exe
+Z:\TUP\C2\Prog\U2\PilasYColas\bin\Debug\PilasYColas.pdb
+Z:\TUP\C2\Prog\U2\PilasYColas\obj\Debug\PilasYColas.exe
+Z:\TUP\C2\Prog\U2\PilasYColas\obj\Debug\PilasYColas.pdb
