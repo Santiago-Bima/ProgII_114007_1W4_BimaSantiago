@@ -825,8 +825,7 @@ namespace banco.Presentacion.Reportes.DSClientesTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=NOTEBOOK-SANTIA\\SQLEXPRESS;Initial Catalog=Banco1_3;Integrated Securi" +
-                "ty=True";
+            this._connection.ConnectionString = global::banco.Properties.Settings.Default.Banco1_3ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

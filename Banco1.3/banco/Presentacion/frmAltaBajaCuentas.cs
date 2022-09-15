@@ -1,4 +1,5 @@
-﻿using System;
+﻿using banco.AccesoDatos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,12 +13,17 @@ namespace banco.Presentacion
 {
     public partial class frmAltaBajaCuentas : Form
     {
-        private DbHelperConexion helper;
         List<Cuenta> lCuentas;
+        private static frmAltaBajaCuentas instancia;
+
+        public static frmAltaBajaCuentas ObtenerInstancia()
+        {
+            if (instancia == null) instancia = new frmAltaBajaCuentas();
+            return instancia;
+        }
         public frmAltaBajaCuentas()
         {
             InitializeComponent();
-            helper = DbHelperConexion.ObtenerInstancia();
             lCuentas = new List<Cuenta>();
         }
         private void frmAltaBaja_Load(object sender, EventArgs e)
@@ -29,7 +35,7 @@ namespace banco.Presentacion
         {
             lstCuentas.Items.Clear();
             lCuentas.Clear();
-            DataTable tabla = helper.ConsultarDb("Select cbu , t.nombre tipo, cl.nombre + ' ' + apellido cliente, activo from cuentas c" +
+            DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("Select cbu , t.nombre tipo, cl.nombre + ' ' + apellido cliente, activo from cuentas c" +
                 " join tiposCuentas t on t.id_tipoCuenta=c.id_tipoCuenta" +
                 " join clientes cl on c.id_cliente=cl.id_cliente");
             foreach (DataRow fila in tabla.Rows)
@@ -93,7 +99,7 @@ namespace banco.Presentacion
         {
             List<Parametros> lParametros = new List<Parametros>();
             lParametros.Add(new Parametros("@cbu", Convert.ToInt32(txtCbu.Text)));
-            if (helper.EjecutarSP(nombreSp, lParametros) > 0) MessageBox.Show("Se ha podido actualizar la cuenta");
+            if (DbHelperDao.ObtenerInstancia().EjecutarSP(nombreSp, lParametros) > 0) MessageBox.Show("Se ha podido actualizar la cuenta");
             CargarListaCuentas();
         }
     }

@@ -12,6 +12,13 @@ namespace banco.Presentacion
 {
     public partial class FrmReporteClientes : Form
     {
+        private static FrmReporteClientes instancia;
+
+        public static FrmReporteClientes ObtenerInstancia()
+        {
+            if (instancia == null) instancia = new FrmReporteClientes();
+            return instancia;
+        }
         public FrmReporteClientes()
         {
             InitializeComponent();
@@ -19,7 +26,7 @@ namespace banco.Presentacion
 
         private void FrmReporteClientes_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dSClientes.clientes' table. You can move, or remove it, as needed.
+            // TODO: esta línea de código carga datos en la tabla 'dSClientes.clientes' Puede moverla o quitarla según sea necesario.
             this.clientesTableAdapter.Fill(this.dSClientes.clientes);
 
             this.reportViewer1.RefreshReport();

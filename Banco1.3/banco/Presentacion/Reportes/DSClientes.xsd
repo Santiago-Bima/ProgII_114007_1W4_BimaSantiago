@@ -4,12 +4,12 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection ConnectionStringObject="Data Source=NOTEBOOK-SANTIA\SQLEXPRESS;Initial Catalog=Banco1_3;Integrated Security=True" IsAppSettingsProperty="false" Modifier="Assembly" Name="notebook-santia\sqlexpress.Banco1_3.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Banco1_3ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Banco1_3ConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.banco.Properties.Settings.GlobalReference.Default.Banco1_3ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="clientesTableAdapter" GeneratorDataComponentClassName="clientesTableAdapter" Name="clientes" UserDataComponentName="clientesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="notebook-santia\sqlexpress.Banco1_3.dbo" DbObjectName="Banco1_3.dbo.clientes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Banco1_3ConnectionString (Settings)" DbObjectName="Banco1_3.dbo.clientes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO [clientes] ([nombre], [apellido], [dni]) VALUES (@nombre, @apellido, @dni)</CommandText>
@@ -41,27 +41,27 @@ FROM   clientes</CommandText>
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DSClientes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DSClientes" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSClientes">
+  <xs:element name="DSClientes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DSClientes" msprop:Generator_DataSetName="DSClientes">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="clientes" msprop:Generator_RowClassName="clientesRow" msprop:Generator_RowEvHandlerName="clientesRowChangeEventHandler" msprop:Generator_RowDeletedName="clientesRowDeleted" msprop:Generator_RowDeletingName="clientesRowDeleting" msprop:Generator_RowEvArgName="clientesRowChangeEvent" msprop:Generator_TablePropName="clientes" msprop:Generator_RowChangedName="clientesRowChanged" msprop:Generator_UserTableName="clientes" msprop:Generator_RowChangingName="clientesRowChanging" msprop:Generator_TableClassName="clientesDataTable" msprop:Generator_TableVarName="tableclientes">
+        <xs:element name="clientes" msprop:Generator_RowEvHandlerName="clientesRowChangeEventHandler" msprop:Generator_RowDeletedName="clientesRowDeleted" msprop:Generator_RowDeletingName="clientesRowDeleting" msprop:Generator_RowEvArgName="clientesRowChangeEvent" msprop:Generator_TablePropName="clientes" msprop:Generator_RowChangedName="clientesRowChanged" msprop:Generator_RowChangingName="clientesRowChanging" msprop:Generator_TableClassName="clientesDataTable" msprop:Generator_RowClassName="clientesRow" msprop:Generator_TableVarName="tableclientes" msprop:Generator_UserTableName="clientes">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="nombre" msprop:Generator_UserColumnName="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" minOccurs="0">
+              <xs:element name="nombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_UserColumnName="nombre" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="apellido" msprop:Generator_UserColumnName="apellido" msprop:Generator_ColumnPropNameInTable="apellidoColumn" msprop:Generator_ColumnPropNameInRow="apellido" msprop:Generator_ColumnVarNameInTable="columnapellido" minOccurs="0">
+              <xs:element name="apellido" msprop:Generator_ColumnPropNameInRow="apellido" msprop:Generator_ColumnPropNameInTable="apellidoColumn" msprop:Generator_ColumnVarNameInTable="columnapellido" msprop:Generator_UserColumnName="apellido" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="dni" msprop:Generator_UserColumnName="dni" msprop:Generator_ColumnPropNameInTable="dniColumn" msprop:Generator_ColumnPropNameInRow="dni" msprop:Generator_ColumnVarNameInTable="columndni" type="xs:long" minOccurs="0" />
+              <xs:element name="dni" msprop:Generator_ColumnPropNameInRow="dni" msprop:Generator_ColumnPropNameInTable="dniColumn" msprop:Generator_ColumnVarNameInTable="columndni" msprop:Generator_UserColumnName="dni" type="xs:long" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

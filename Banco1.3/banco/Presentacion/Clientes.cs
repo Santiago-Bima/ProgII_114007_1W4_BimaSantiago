@@ -1,4 +1,5 @@
-﻿using System;
+﻿using banco.AccesoDatos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,18 @@ namespace banco.Presentacion
 {
     public partial class frmClientes : Form
     {
-        private DbHelperConexion helper;
         List<Cliente> lClientes;
+        private static frmClientes instancia;
 
+        public static frmClientes ObtenerInstancia()
+        {
+            if(instancia == null) instancia = new frmClientes();
+            return instancia;
+        }
 
         public frmClientes()
         {
             InitializeComponent();
-            helper = DbHelperConexion.ObtenerInstancia();
             lClientes = new List<Cliente>();
         }
 
@@ -36,7 +41,7 @@ namespace banco.Presentacion
         {
             lstClientes.Items.Clear();
             lClientes.Clear();
-            DataTable tabla = helper.ConsultarDb("Select * from clientes");
+            DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("Select * from clientes");
             foreach (DataRow fila in tabla.Rows)
             {
                 Cliente c = new Cliente();
@@ -165,7 +170,7 @@ namespace banco.Presentacion
                     lParametros.Add(new Parametros("@apellido", txtApellidoCliente.Text));
                     lParametros.Add(new Parametros("@dni", Convert.ToInt32(txtDniCliente.Text)));
 
-                    if (helper.EjecutarSP("sp_ingresarCliente", lParametros) > 0)
+                    if (DbHelperDao.ObtenerInstancia().EjecutarSP("sp_ingresarCliente", lParametros) > 0)
                     {
                         MessageBox.Show("Se pudo Ingresar el Cliente");
                         LimpiarClientes();
@@ -179,7 +184,7 @@ namespace banco.Presentacion
                     lParametros.Add(new Parametros("@nombre", c.pNombre));
                     lParametros.Add(new Parametros("@apellido", c.pApellido));
                     lParametros.Add(new Parametros("@dni", c.pDni));
-                    if (helper.EjecutarSP("sp_actualizarCliente", lParametros) > 0) MessageBox.Show("Se ha podido actualizar el cliente");
+                    if (DbHelperDao.ObtenerInstancia().EjecutarSP("sp_actualizarCliente", lParametros) > 0) MessageBox.Show("Se ha podido actualizar el cliente");
 
                     HabilitarCliente(false);
                     LimpiarClientes();
@@ -207,7 +212,7 @@ namespace banco.Presentacion
                 == DialogResult.Yes)
             {
 
-                if (helper.EjecutarEliminarSP("Sp_eliminarCliente", lClientes[lstClientes.SelectedIndex].pDni, -1)) MessageBox.Show("se pudo eliminar el Cliente");
+                if (DbHelperDao.ObtenerInstancia().EjecutarEliminarSP("Sp_eliminarCliente", lClientes[lstClientes.SelectedIndex].pDni, -1)) MessageBox.Show("se pudo eliminar el Cliente");
                 
                 CargarListaClientes();
                 LimpiarClientes();

@@ -1,4 +1,5 @@
-﻿using banco.Dominio;
+﻿using banco.AccesoDatos;
+using banco.Dominio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,13 +14,11 @@ namespace banco.Presentacion
 {
     public partial class frmPrincipal : Form
     {
-        private DbHelperConexion helper;
         List<Cliente> lClientes;
 
         public frmPrincipal()
         {
             InitializeComponent();
-            helper = DbHelperConexion.ObtenerInstancia();
             lClientes = new List<Cliente>();
         }
 
@@ -32,7 +31,7 @@ namespace banco.Presentacion
         {
             lstClientes.Items.Clear();
             lClientes.Clear();
-            DataTable tabla = helper.ConsultarDb("Select * from clientes");
+            DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("Select * from clientes");
             foreach (DataRow fila in tabla.Rows)
             {
                 Cliente c = new Cliente();
@@ -64,7 +63,7 @@ namespace banco.Presentacion
             dgvCuentas.DataSource = null;
             dgvCuentas.Rows.Clear();
             dgvCuentas.Columns.Clear();
-            DataTable tabla = helper.ConsultarDb("Select id_cuenta ID,cbu CBU, t.nombre as 'Tipo de Cuenta', c.nombre + ' ' + c.apellido as Cliente, total Total, ultimo_mov 'Ultimo Movimiento'" +
+            DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("Select id_cuenta ID,cbu CBU, t.nombre as 'Tipo de Cuenta', c.nombre + ' ' + c.apellido as Cliente, total Total, ultimo_mov 'Ultimo Movimiento'" +
                 " from cuentas cu join clientes c on c.id_cliente=cu.id_cliente" +
                 " join tiposCuentas t on t.id_tipoCuenta=cu.id_tipoCuenta" +
                 " where c.nombre + ' ' + c.apellido = '" + nombre + "' and activo=1");
@@ -82,7 +81,7 @@ namespace banco.Presentacion
                 dgvTransacciones.Rows.Clear();
                 dgvTransacciones.Columns.Clear();
                 int idCuenta = Convert.ToInt32(dgvCuentas.Rows[e.RowIndex].Cells[0].Value);
-                DataTable tabla = helper.ConsultarDb("Select nro_transaccion 'Numero de la Transaccion', total Total, fecha 'Fecha de realizacion' from transacciones where id_cuenta=" + idCuenta + " and activo=1");
+                DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("Select nro_transaccion 'Numero de la Transaccion', total Total, fecha 'Fecha de realizacion' from transacciones where id_cuenta=" + idCuenta + " and activo=1");
                 dgvTransacciones.DataSource = tabla;
             }
             catch{
@@ -99,7 +98,7 @@ namespace banco.Presentacion
                 dgvMovimientos.Rows.Clear();
                 dgvMovimientos.Columns.Clear();
                 int nroTransaccion = Convert.ToInt32(dgvTransacciones.Rows[e.RowIndex].Cells[0].Value);
-                DataTable tabla = helper.ConsultarDb("Select monto Monto, t.tipo from Movimientos m" +
+                DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("Select monto Monto, t.tipo from Movimientos m" +
                     " join tiposMovimientos t on t.id_tipo=m.id_tipo " +
                     " where nro_transaccion=" + nroTransaccion);
                 dgvMovimientos.DataSource = tabla;
@@ -119,14 +118,16 @@ namespace banco.Presentacion
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmClientes Cliente = new frmClientes();
+            frmClientes Cliente = frmClientes.ObtenerInstancia();
             Cliente.Show();
+            Cliente.Focus();
         }
 
         private void nuevaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmCuentas  Cuenta = new frmCuentas();
+            frmCuentas Cuenta = frmCuentas.ObtenerInstancia();
             Cuenta.Show();
+            Cuenta.Focus();
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -140,8 +141,9 @@ namespace banco.Presentacion
 
         private void nuevaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmTransacciones transaccion = new frmTransacciones();
+            frmTransacciones transaccion = frmTransacciones.ObtenerInstancia();
             transaccion.Show();
+            transaccion.Focus();
         }
 
 
@@ -162,14 +164,16 @@ namespace banco.Presentacion
 
         private void darDeBajaAltaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAltaBajaCuentas AltaBaja = new frmAltaBajaCuentas();
+            frmAltaBajaCuentas AltaBaja = frmAltaBajaCuentas.ObtenerInstancia();
             AltaBaja.Show();
+            AltaBaja.Focus();
         }
 
         private void darDeBajaAltaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmAltaBajaTransacciones AltaBaja = new frmAltaBajaTransacciones();
+            frmAltaBajaTransacciones AltaBaja = frmAltaBajaTransacciones.ObtenerInstancia();
             AltaBaja.Show();
+            AltaBaja.Focus();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -179,20 +183,23 @@ namespace banco.Presentacion
 
         private void btnReporteCuentas_Click(object sender, EventArgs e)
         {
-            frmReporteTransacciones RepoTransaccion = new frmReporteTransacciones();
+            frmReporteTransacciones RepoTransaccion = frmReporteTransacciones.ObtenerInstancia();
             RepoTransaccion.Show();
+            RepoTransaccion.Focus();
         }
 
         private void btnRepClientes_Click(object sender, EventArgs e)
         {
-            FrmReporteClientes RepoCliente = new FrmReporteClientes();
+            FrmReporteClientes RepoCliente = FrmReporteClientes.ObtenerInstancia();
             RepoCliente.Show();
+            RepoCliente.Focus();
         }
 
         private void btnRepoCuentas_Click(object sender, EventArgs e)
         {
-            FrmReporteCuentas RepoCuenta = new FrmReporteCuentas();
+            FrmReporteCuentas RepoCuenta = FrmReporteCuentas.ObtenerInstancia();
             RepoCuenta.Show();
+            RepoCuenta.Focus();
         }
     }
 }

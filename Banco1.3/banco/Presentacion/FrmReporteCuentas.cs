@@ -12,6 +12,13 @@ namespace banco.Presentacion
 {
     public partial class FrmReporteCuentas : Form
     {
+        private static FrmReporteCuentas instancia;
+
+        public static FrmReporteCuentas ObtenerInstancia()
+        {
+            if (instancia == null) instancia = new FrmReporteCuentas();
+            return instancia;
+        }
         public FrmReporteCuentas()
         {
             InitializeComponent();

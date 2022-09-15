@@ -7,20 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using banco.AccesoDatos;
 using banco.Dominio;
 
 namespace banco.Presentacion
 {
     public partial class frmTransacciones : Form
     {
-        private DbHelperConexion helper;
         private Transaccion nuevo;
+        private static frmTransacciones instancia;
 
+        public static frmTransacciones ObtenerInstancia()
+        {
+            if (instancia == null) instancia = new frmTransacciones();
+            return instancia;
+        }
 
         public frmTransacciones()
         {
             InitializeComponent();
-            helper = DbHelperConexion.ObtenerInstancia();
             nuevo = new Transaccion();
         }
 
@@ -38,7 +43,7 @@ namespace banco.Presentacion
 
         private void CargarComboTipos()
         {
-            DataTable tabla = helper.ConsultarDb("SELECT * FROM tiposMovimientos order by 2");
+            DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("SELECT * FROM tiposMovimientos order by 2");
             if (tabla != null)
             {
                 cboTipos.DataSource = tabla;
@@ -51,7 +56,7 @@ namespace banco.Presentacion
 
         private void CargarComboCuentas()
         {
-            DataTable tabla = helper.ConsultarDb("SELECT * FROM cuentas where activo=1 order by 2");
+            DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("SELECT * FROM cuentas where activo=1 order by 2");
             if (tabla != null)
             {
                 cboCuentas.DataSource = tabla;
@@ -83,7 +88,7 @@ namespace banco.Presentacion
 
         private void ProximaTransaccion()
         {
-            int next = helper.ProximaTransaccion();
+            int next = DbHelperDao.ObtenerInstancia().ProximaTransaccion();
             if (next > 0)
                 lblNroTransaccion.Text = "Transacción Nº: " + next.ToString();
             else
@@ -176,16 +181,16 @@ namespace banco.Presentacion
         {
             nuevo.IdCuenta = Convert.ToInt32(cboCuentas.SelectedValue);
             nuevo.Fecha = Convert.ToDateTime(txtFecha.Text);
-            if (helper.ConfirmarTransaccion(nuevo))
+            if (DbHelperDao.ObtenerInstancia().ConfirmarTransaccion(nuevo))
             {
-                DataTable tabla = helper.ConsultarDb("select total from cuentas where id_cuenta=" + nuevo.IdCuenta);
+                DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("select total from cuentas where id_cuenta=" + nuevo.IdCuenta);
                 int total = Convert.ToInt32(tabla.Rows[0]["total"]);
                 List<Parametros> lParametros = new List<Parametros>();
                 lParametros.Add(new Parametros("@total", total + nuevo.CalcularTotal()));
                 lParametros.Add(new Parametros("@ultimo_Mov", nuevo.Fecha));
                 lParametros.Add(new Parametros("@id_Cuenta", nuevo.IdCuenta));
                 
-                if(helper.EjecutarSP("sp_adjuntarTransaccion", lParametros) > 0 )
+                if(DbHelperDao.ObtenerInstancia().EjecutarSP("sp_adjuntarTransaccion", lParametros) > 0 )
                 {
                     MessageBox.Show("Transacción registrada", "Informe", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();

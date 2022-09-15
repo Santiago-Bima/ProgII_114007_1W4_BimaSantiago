@@ -9,21 +9,24 @@ using System.Threading.Tasks;
 
 namespace banco.AccesoDatos
 {
-    internal class DbHelperDao : DbHelperConexion, Interface1
+    internal class DbHelperDao
     {
-        private static DbHelperConexion instancia;
+        private SqlConnection conn = new SqlConnection(Properties.Resources.cnnString);
+        SqlCommand cmd = new SqlCommand();
+        private static DbHelperDao instancia;
 
-        public static DbHelperConexion ObtenerInstancia()
+        public static DbHelperDao ObtenerInstancia()
         {
             if (instancia == null)
-                instancia = new DbHelperConexion();
+                instancia = new DbHelperDao();
             return instancia;
         }
 
         public DataTable ConsultarDb(string consulta)
         {
             DataTable tabla = new DataTable();
-            conectar();
+            conn.Open();
+            cmd.Connection = conn;
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = consulta;
             tabla.Load(cmd.ExecuteReader());

@@ -1,4 +1,5 @@
-﻿using Microsoft.Reporting.WinForms;
+﻿using banco.AccesoDatos;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +14,16 @@ namespace banco.Presentacion
 {
     public partial class frmReporteTransacciones : Form
     {
+        private static frmReporteTransacciones instancia;
 
-        private DbHelperConexion helper;
+        public static frmReporteTransacciones ObtenerInstancia()
+        {
+            if (instancia == null) instancia = new frmReporteTransacciones();
+            return instancia;
+        }
         public frmReporteTransacciones()
         {
             InitializeComponent();
-            helper = DbHelperConexion.ObtenerInstancia();
         }
 
         private void frmReporteTransacciones_Load(object sender, EventArgs e)
@@ -27,7 +32,7 @@ namespace banco.Presentacion
         }
         private void CargarComboCuentas()
         {
-            DataTable tabla = helper.ConsultarDb("SELECT * FROM cuentas where activo=1 order by 2");
+            DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("SELECT * FROM cuentas where activo=1 order by 2");
             if (tabla != null)
             {
                 cboCuentas.DataSource = tabla;
@@ -48,7 +53,7 @@ namespace banco.Presentacion
                 if (cboCuentas.SelectedIndex > -1)
                 {
                     reportViewer1.LocalReport.DataSources.Clear();
-                    reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet2", helper.ConsultarDb(cadenaSql)));
+                    reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet2", DbHelperDao.ObtenerInstancia().ConsultarDb(cadenaSql)));
                     reportViewer1.RefreshReport();
                 }
                 else

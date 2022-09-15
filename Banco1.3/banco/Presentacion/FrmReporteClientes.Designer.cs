@@ -47,7 +47,7 @@
             this.reportViewer1.Location = new System.Drawing.Point(13, 13);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(933, 558);
+            this.reportViewer1.Size = new System.Drawing.Size(996, 536);
             this.reportViewer1.TabIndex = 0;
             // 
             // dSClientes
@@ -68,8 +68,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(958, 583);
+            this.ClientSize = new System.Drawing.Size(1021, 561);
             this.Controls.Add(this.reportViewer1);
             this.Name = "FrmReporteClientes";
             this.Text = "Clientes";

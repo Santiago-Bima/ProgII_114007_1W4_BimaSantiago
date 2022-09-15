@@ -1,4 +1,6 @@
-﻿using System;
+﻿using banco.AccesoDatos;
+using banco.Presentacion;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
@@ -7,15 +9,19 @@ namespace banco
 {
     public partial class frmCuentas : Form
     {
-
-        private DbHelperConexion helper;
         List<Cuenta> lCuentas;
+        private static frmCuentas instancia;
+
+        public static frmCuentas ObtenerInstancia()
+        {
+            if (instancia == null) instancia = new frmCuentas();
+            return instancia;
+        }
 
 
         public frmCuentas()
         {
             InitializeComponent();
-            helper = DbHelperConexion.ObtenerInstancia();
             lCuentas = new List<Cuenta>();
         }
 
@@ -36,11 +42,11 @@ namespace banco
             dataGridCuentas.Rows.Clear();
             dataGridCuentas.Columns.Clear();
             lCuentas.Clear();
-            DataTable tabla = helper.ConsultarDb("Select cbu, t.nombre as 'Tipo de Cuenta', c.nombre + ' ' + c.apellido as 'cliente', total Total" +
+            DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("Select cbu, t.nombre as 'Tipo de Cuenta', c.nombre + ' ' + c.apellido as 'cliente', total Total" +
                 " from cuentas join clientes c on c.id_cliente=cuentas.id_cliente" +
                 " join tiposCuentas t on t.id_tipoCuenta=cuentas.id_tipoCuenta" +
                 " where activo=1");
-            DataTable tabla2 = helper.ConsultarDb("select cbu, id_tipoCuenta, dni from cuentas c join clientes cc on c.id_cliente=cc.id_cliente where activo=1");
+            DataTable tabla2 = DbHelperDao.ObtenerInstancia().ConsultarDb("select cbu, id_tipoCuenta, dni from cuentas c join clientes cc on c.id_cliente=cc.id_cliente where activo=1");
             foreach (DataRow fila in tabla2.Rows)
             {
                 Cuenta c = new Cuenta();
@@ -55,7 +61,7 @@ namespace banco
 
         private void CargarComboTipoCuentas()
         {
-            DataTable tabla = helper.ConsultarDb("SELECT * FROM TiposCuentas order by 2");
+            DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("SELECT * FROM TiposCuentas order by 2");
             cboTipoCuenta.DataSource = tabla;
             cboTipoCuenta.DisplayMember = "nombre";
             cboTipoCuenta.ValueMember = "id_tipoCuenta";
@@ -65,7 +71,7 @@ namespace banco
 
         private void CargarComboClientes()
         {
-            DataTable tabla = helper.ConsultarDb("SELECT * FROM clientes order by 2");
+            DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("SELECT * FROM clientes order by 2");
             cboCliente.DataSource = tabla;
             cboCliente.DisplayMember = "dni";
             cboCliente.ValueMember = "id_cliente";
@@ -189,7 +195,7 @@ namespace banco
                     lParametros.Add(new Parametros("@id_tipoCuenta", c.pTipoCuenta));
                     lParametros.Add(new Parametros("@id_cliente", c.pCliente));
 
-                    if (helper.EjecutarSP("sp_ingresarCuenta", lParametros) > 0)
+                    if (DbHelperDao.ObtenerInstancia().EjecutarSP("sp_ingresarCuenta", lParametros) > 0)
                     {
                         MessageBox.Show("Se pudo Ingresar la cuenta");
                         LimpiarCuentas();
@@ -203,7 +209,7 @@ namespace banco
                     lParametros.Add(new Parametros("@cbu", c.pCbu));
                     lParametros.Add(new Parametros("@id_tipoCuenta", c.pTipoCuenta));
                     lParametros.Add(new Parametros("@id_cliente", c.pCliente));
-                    if (helper.EjecutarSP("sp_actualizarCuenta", lParametros) > 0) MessageBox.Show("Se ha podido actualizar la cuenta");
+                    if (DbHelperDao.ObtenerInstancia().EjecutarSP("sp_actualizarCuenta", lParametros) > 0) MessageBox.Show("Se ha podido actualizar la cuenta");
 
                     HabilitarCuentas(false);
                     LimpiarCuentas();
@@ -224,7 +230,7 @@ namespace banco
             {
                 
 
-                if (helper.EjecutarEliminarSP("Sp_eliminarCuentaYRelacionados", -1, lCuentas[Convert.ToInt32(dataGridCuentas.CurrentCell.RowIndex)].pCliente)) MessageBox.Show("se pudo eliminar la Cuenta");
+                if (DbHelperDao.ObtenerInstancia().EjecutarEliminarSP("Sp_eliminarCuentaYRelacionados", -1, lCuentas[Convert.ToInt32(dataGridCuentas.CurrentCell.RowIndex)].pCliente)) MessageBox.Show("se pudo eliminar la Cuenta");
                 
                 CargarGridCuentas();
                 LimpiarCuentas();

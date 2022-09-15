@@ -4,12 +4,12 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection ConnectionStringObject="Data Source=NOTEBOOK-SANTIA\SQLEXPRESS;Initial Catalog=Banco1_3;Integrated Security=True" IsAppSettingsProperty="false" Modifier="Assembly" Name="notebook-santia\sqlexpress.Banco1_3.dbo" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Banco1_3ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Banco1_3ConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.banco.Properties.Settings.GlobalReference.Default.Banco1_3ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="notebook-santia\sqlexpress.Banco1_3.dbo" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="Banco1_3ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT cuentas.cbu AS CBU, clientes.nombre + ' ' + clientes.apellido AS Cliente, tiposCuentas.nombre AS 'Tipo_de_Cuenta', cuentas.total, cuentas.ultimo_mov AS 'Ultimo_movimiento', COUNT(Transacciones.nro_transaccion) AS 'Cantidad_de_Transacciones'
@@ -27,8 +27,8 @@ ORDER BY Cliente, CBU</CommandText>
             <Mappings>
               <Mapping SourceColumn="CBU" DataSetColumn="CBU" />
               <Mapping SourceColumn="Cliente" DataSetColumn="Cliente" />
-              <Mapping SourceColumn="total" DataSetColumn="total" />
               <Mapping SourceColumn="Tipo_de_Cuenta" DataSetColumn="Tipo_de_Cuenta" />
+              <Mapping SourceColumn="total" DataSetColumn="total" />
               <Mapping SourceColumn="Ultimo_movimiento" DataSetColumn="Ultimo_movimiento" />
               <Mapping SourceColumn="Cantidad_de_Transacciones" DataSetColumn="Cantidad_de_Transacciones" />
             </Mappings>
@@ -39,30 +39,30 @@ ORDER BY Cliente, CBU</CommandText>
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DSCuentas" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DSCuentas" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSCuentas">
+  <xs:element name="DSCuentas" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DSCuentas" msprop:Generator_DataSetName="DSCuentas">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTable1" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1">
+        <xs:element name="DataTable1" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_UserTableName="DataTable1">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="CBU" msprop:Generator_ColumnPropNameInTable="CBUColumn" msprop:Generator_ColumnPropNameInRow="CBU" msprop:Generator_UserColumnName="CBU" msprop:Generator_ColumnVarNameInTable="columnCBU" type="xs:long" minOccurs="0" />
-              <xs:element name="Cliente" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="ClienteColumn" msprop:Generator_ColumnPropNameInRow="Cliente" msprop:Generator_UserColumnName="Cliente" msprop:Generator_ColumnVarNameInTable="columnCliente" minOccurs="0">
+              <xs:element name="CBU" msprop:Generator_ColumnPropNameInRow="CBU" msprop:Generator_ColumnPropNameInTable="CBUColumn" msprop:Generator_ColumnVarNameInTable="columnCBU" msprop:Generator_UserColumnName="CBU" type="xs:long" minOccurs="0" />
+              <xs:element name="Cliente" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Cliente" msprop:Generator_ColumnPropNameInTable="ClienteColumn" msprop:Generator_ColumnVarNameInTable="columnCliente" msprop:Generator_UserColumnName="Cliente" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="41" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="total" msprop:Generator_ColumnPropNameInTable="totalColumn" msprop:Generator_ColumnPropNameInRow="total" msprop:Generator_UserColumnName="total" msprop:Generator_ColumnVarNameInTable="columntotal" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Tipo_de_Cuenta" msprop:Generator_UserColumnName="Tipo_de_Cuenta" msprop:Generator_ColumnPropNameInTable="Tipo_de_CuentaColumn" msprop:Generator_ColumnPropNameInRow="Tipo_de_Cuenta" msprop:Generator_ColumnVarNameInTable="columnTipo_de_Cuenta" minOccurs="0">
+              <xs:element name="Tipo_de_Cuenta" msprop:Generator_ColumnPropNameInRow="Tipo_de_Cuenta" msprop:Generator_ColumnPropNameInTable="Tipo_de_CuentaColumn" msprop:Generator_ColumnVarNameInTable="columnTipo_de_Cuenta" msprop:Generator_UserColumnName="Tipo_de_Cuenta" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Ultimo_movimiento" msprop:Generator_UserColumnName="Ultimo_movimiento" msprop:Generator_ColumnPropNameInTable="Ultimo_movimientoColumn" msprop:Generator_ColumnPropNameInRow="Ultimo_movimiento" msprop:Generator_ColumnVarNameInTable="columnUltimo_movimiento" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Cantidad_de_Transacciones" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Cantidad_de_Transacciones" msprop:Generator_ColumnPropNameInTable="Cantidad_de_TransaccionesColumn" msprop:Generator_ColumnPropNameInRow="Cantidad_de_Transacciones" msprop:Generator_ColumnVarNameInTable="columnCantidad_de_Transacciones" type="xs:int" minOccurs="0" />
+              <xs:element name="total" msprop:Generator_ColumnPropNameInRow="total" msprop:Generator_ColumnPropNameInTable="totalColumn" msprop:Generator_ColumnVarNameInTable="columntotal" msprop:Generator_UserColumnName="total" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Ultimo_movimiento" msprop:Generator_ColumnPropNameInRow="Ultimo_movimiento" msprop:Generator_ColumnPropNameInTable="Ultimo_movimientoColumn" msprop:Generator_ColumnVarNameInTable="columnUltimo_movimiento" msprop:Generator_UserColumnName="Ultimo_movimiento" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Cantidad_de_Transacciones" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Cantidad_de_Transacciones" msprop:Generator_ColumnPropNameInTable="Cantidad_de_TransaccionesColumn" msprop:Generator_ColumnVarNameInTable="columnCantidad_de_Transacciones" msprop:Generator_UserColumnName="Cantidad_de_Transacciones" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

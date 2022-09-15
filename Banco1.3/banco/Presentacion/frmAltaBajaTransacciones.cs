@@ -7,19 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using banco.AccesoDatos;
 using banco.Dominio;
 
 namespace banco.Presentacion
 {
     public partial class frmAltaBajaTransacciones : Form
     {
-        private DbHelperConexion helper;
         List<Cuenta> lCuentas;
         List<Transaccion> lTransacciones;
+        private static frmAltaBajaTransacciones instancia;
+
+        public static frmAltaBajaTransacciones ObtenerInstancia()
+        {
+            if (instancia == null) instancia = new frmAltaBajaTransacciones();
+            return instancia;
+        }
         public frmAltaBajaTransacciones()
         {
             InitializeComponent();
-            helper = DbHelperConexion.ObtenerInstancia();
             lCuentas = new List<Cuenta>();
             lTransacciones = new List<Transaccion>();
         }
@@ -33,7 +39,7 @@ namespace banco.Presentacion
         {
             lstCuentas.Items.Clear();
             lCuentas.Clear();
-            DataTable tabla = helper.ConsultarDb("Select id_cuenta, cbu , t.nombre tipo, cl.nombre + ' ' + apellido cliente, total" +
+            DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("Select id_cuenta, cbu , t.nombre tipo, cl.nombre + ' ' + apellido cliente, total" +
                 " from cuentas c " +
                 " join tiposCuentas t on t.id_tipoCuenta=c.id_tipoCuenta" +
                 " join clientes cl on c.id_cliente=cl.id_cliente" +
@@ -63,7 +69,7 @@ namespace banco.Presentacion
         {
             lstTransacciones.Items.Clear();
             lTransacciones.Clear();
-            DataTable tabla = helper.ConsultarDb("Select nro_transaccion, total, fecha, activo" +
+            DataTable tabla = DbHelperDao.ObtenerInstancia().ConsultarDb("Select nro_transaccion, total, fecha, activo" +
                 " from transacciones t" +
                 " where t.id_cuenta=" + id_cuenta);
             foreach (DataRow fila in tabla.Rows)
@@ -135,7 +141,7 @@ namespace banco.Presentacion
             List<Parametros> lParametros2 = new List<Parametros>();
             lParametros2.Add(new Parametros("@monto", monto));
             lParametros2.Add(new Parametros("@id_cuenta", Convert.ToInt32(lCuentas[lstCuentas.SelectedIndex].pId)));
-            if (helper.EjecutarSP(nombreSp, lParametros) > 0 && helper.EjecutarSP("sp_actualizarTotal", lParametros2)>0) MessageBox.Show("Se ha podido actualizar la transaccion");
+            if (DbHelperDao.ObtenerInstancia().EjecutarSP(nombreSp, lParametros) > 0 && DbHelperDao.ObtenerInstancia().EjecutarSP("sp_actualizarTotal", lParametros2)>0) MessageBox.Show("Se ha podido actualizar la transaccion");
             CargarListaTransacciones(lCuentas[lstCuentas.SelectedIndex].pId);
         }
     }

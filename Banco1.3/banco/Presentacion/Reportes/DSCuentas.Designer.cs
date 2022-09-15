@@ -283,9 +283,9 @@ namespace banco.Presentacion.Reportes {
             
             private global::System.Data.DataColumn columnCliente;
             
-            private global::System.Data.DataColumn columntotal;
-            
             private global::System.Data.DataColumn columnTipo_de_Cuenta;
+            
+            private global::System.Data.DataColumn columntotal;
             
             private global::System.Data.DataColumn columnUltimo_movimiento;
             
@@ -342,17 +342,17 @@ namespace banco.Presentacion.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn totalColumn {
+            public global::System.Data.DataColumn Tipo_de_CuentaColumn {
                 get {
-                    return this.columntotal;
+                    return this.columnTipo_de_Cuenta;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Tipo_de_CuentaColumn {
+            public global::System.Data.DataColumn totalColumn {
                 get {
-                    return this.columnTipo_de_Cuenta;
+                    return this.columntotal;
                 }
             }
             
@@ -409,13 +409,13 @@ namespace banco.Presentacion.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DataTable1Row AddDataTable1Row(long CBU, string Cliente, decimal total, string Tipo_de_Cuenta, System.DateTime Ultimo_movimiento, int Cantidad_de_Transacciones) {
+            public DataTable1Row AddDataTable1Row(long CBU, string Cliente, string Tipo_de_Cuenta, decimal total, System.DateTime Ultimo_movimiento, int Cantidad_de_Transacciones) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CBU,
                         Cliente,
-                        total,
                         Tipo_de_Cuenta,
+                        total,
                         Ultimo_movimiento,
                         Cantidad_de_Transacciones};
                 rowDataTable1Row.ItemArray = columnValuesArray;
@@ -442,8 +442,8 @@ namespace banco.Presentacion.Reportes {
             internal void InitVars() {
                 this.columnCBU = base.Columns["CBU"];
                 this.columnCliente = base.Columns["Cliente"];
-                this.columntotal = base.Columns["total"];
                 this.columnTipo_de_Cuenta = base.Columns["Tipo_de_Cuenta"];
+                this.columntotal = base.Columns["total"];
                 this.columnUltimo_movimiento = base.Columns["Ultimo_movimiento"];
                 this.columnCantidad_de_Transacciones = base.Columns["Cantidad_de_Transacciones"];
             }
@@ -455,10 +455,10 @@ namespace banco.Presentacion.Reportes {
                 base.Columns.Add(this.columnCBU);
                 this.columnCliente = new global::System.Data.DataColumn("Cliente", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCliente);
-                this.columntotal = new global::System.Data.DataColumn("total", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntotal);
                 this.columnTipo_de_Cuenta = new global::System.Data.DataColumn("Tipo_de_Cuenta", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTipo_de_Cuenta);
+                this.columntotal = new global::System.Data.DataColumn("total", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntotal);
                 this.columnUltimo_movimiento = new global::System.Data.DataColumn("Ultimo_movimiento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUltimo_movimiento);
                 this.columnCantidad_de_Transacciones = new global::System.Data.DataColumn("Cantidad_de_Transacciones", typeof(int), null, global::System.Data.MappingType.Element);
@@ -641,22 +641,6 @@ namespace banco.Presentacion.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal total {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableDataTable1.totalColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'total\' de la tabla \'DataTable1\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataTable1.totalColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Tipo_de_Cuenta {
                 get {
                     try {
@@ -668,6 +652,22 @@ namespace banco.Presentacion.Reportes {
                 }
                 set {
                     this[this.tableDataTable1.Tipo_de_CuentaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal total {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDataTable1.totalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'total\' de la tabla \'DataTable1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.totalColumn] = value;
                 }
             }
             
@@ -730,18 +730,6 @@ namespace banco.Presentacion.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IstotalNull() {
-                return this.IsNull(this.tableDataTable1.totalColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SettotalNull() {
-                this[this.tableDataTable1.totalColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsTipo_de_CuentaNull() {
                 return this.IsNull(this.tableDataTable1.Tipo_de_CuentaColumn);
             }
@@ -750,6 +738,18 @@ namespace banco.Presentacion.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTipo_de_CuentaNull() {
                 this[this.tableDataTable1.Tipo_de_CuentaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IstotalNull() {
+                return this.IsNull(this.tableDataTable1.totalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SettotalNull() {
+                this[this.tableDataTable1.totalColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -938,8 +938,8 @@ namespace banco.Presentacion.Reportes.DSCuentasTableAdapters {
             tableMapping.DataSetTable = "DataTable1";
             tableMapping.ColumnMappings.Add("CBU", "CBU");
             tableMapping.ColumnMappings.Add("Cliente", "Cliente");
-            tableMapping.ColumnMappings.Add("total", "total");
             tableMapping.ColumnMappings.Add("Tipo_de_Cuenta", "Tipo_de_Cuenta");
+            tableMapping.ColumnMappings.Add("total", "total");
             tableMapping.ColumnMappings.Add("Ultimo_movimiento", "Ultimo_movimiento");
             tableMapping.ColumnMappings.Add("Cantidad_de_Transacciones", "Cantidad_de_Transacciones");
             this._adapter.TableMappings.Add(tableMapping);
@@ -949,8 +949,7 @@ namespace banco.Presentacion.Reportes.DSCuentasTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=NOTEBOOK-SANTIA\\SQLEXPRESS;Initial Catalog=Banco1_3;Integrated Securi" +
-                "ty=True";
+            this._connection.ConnectionString = global::banco.Properties.Settings.Default.Banco1_3ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

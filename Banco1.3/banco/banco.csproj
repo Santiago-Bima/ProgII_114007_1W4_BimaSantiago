@@ -64,11 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccesoDatos\DbHelperConexion.cs" />
     <Compile Include="AccesoDatos\DbHelperDao.cs" />
     <Compile Include="Dominio\Cliente.cs" />
     <Compile Include="Dominio\Cuenta.cs" />
-    <Compile Include="Dominio\Interface1.cs" />
     <Compile Include="Dominio\Movimiento.cs" />
     <Compile Include="Dominio\Transaccion.cs" />
     <Compile Include="Presentacion\Cuentas.cs">
@@ -125,9 +123,6 @@
     </Compile>
     <Compile Include="Presentacion\Principal.Designer.cs">
       <DependentUpon>Principal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Reportes\DSClientes.cs">
-      <DependentUpon>DSClientes.xsd</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Reportes\DSClientes.Designer.cs">
       <AutoGen>True</AutoGen>
