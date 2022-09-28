@@ -103,6 +103,13 @@
             // cboTipoRecetas
             // 
             this.cboTipoRecetas.FormattingEnabled = true;
+            this.cboTipoRecetas.Items.AddRange(new object[] {
+            "Mariscos",
+            "Pastas",
+            "Vegano",
+            "Vegetariano",
+            "Pescado",
+            "Pasteleria"});
             this.cboTipoRecetas.Location = new System.Drawing.Point(203, 139);
             this.cboTipoRecetas.Name = "cboTipoRecetas";
             this.cboTipoRecetas.Size = new System.Drawing.Size(446, 28);

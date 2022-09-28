@@ -1,14 +1,10 @@
-﻿using RecetasSLN.dominio;
+﻿using RecetasSLN.datos;
+using RecetasSLN.dominio;
+using RecetasSLN.Servicios;
+using RecetasSLN.Servicios.Interfaes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using RecetasSLN.datos;
 
 namespace RecetasSLN.presentación
 {
@@ -16,6 +12,9 @@ namespace RecetasSLN.presentación
     {
         private static FrmAltaRecetas instancia;
         private Receta nueva;
+        private IServicio servicio;
+        private FabricaServicio oFabrica;
+
         public static FrmAltaRecetas ObtenerInstancia()
         {
             if (instancia == null) instancia = new FrmAltaRecetas();
@@ -24,34 +23,36 @@ namespace RecetasSLN.presentación
         public FrmAltaRecetas()
         {
             InitializeComponent();
+            oFabrica = new FabricaServicioIMP();
+            servicio = oFabrica.CrearServicio();
             nueva = new Receta();
-            ultimaReceta();
+            UltimaReceta();
         }
-        
-        private void ultimaReceta()
+
+        private void UltimaReceta()
         {
-            lblRecetaN.Text = "Receta #: " + RecetaDao.ObtenerInstancia().ProximaReceta();
+            lblRecetaN.Text = "Receta #: " + servicio.ProximaReceta();
         }
 
         private void FrmAltaRecetas_Load(object sender, EventArgs e)
         {
-            cargarCombo();
-            limpiar();
+            CargarCombo();
+            Limpiar();
         }
-        private void limpiar()
+        private void Limpiar()
         {
             txtNombre.Text = string.Empty;
             txtNombre.Focus();
             txtCheff.Text = string.Empty;
-            cboTipoRecetas.SelectedValue = -1;
+            cboTipoRecetas.Text = "";
             dgvIngredientes.Rows.Clear();
             lblTotalIngredientes.Text = "Total de ingredientes:";
-            ultimaReceta();
+            UltimaReceta();
         }
 
-        private void cargarCombo()
+        private void CargarCombo()
         {
-            DataTable tabla = RecetaDao.ObtenerInstancia().ConsultarDB("sp_consultar_ingredientes");
+            DataTable tabla = servicio.ConsultarDB("sp_consultar_ingredientes");
             cboIngredientes.DataSource = tabla;
             cboIngredientes.ValueMember = "id_ingrediente";
             cboIngredientes.DisplayMember = "n_ingrediente";
@@ -65,23 +66,29 @@ namespace RecetasSLN.presentación
                 MessageBox.Show("Debe seleccionar un ingrediente", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
-            if (string.IsNullOrEmpty(numCantidad.Text) || !int.TryParse(numCantidad.Text, out _))
+            else if (string.IsNullOrEmpty(numCantidad.Text) || !int.TryParse(numCantidad.Text, out _))
             {
                 MessageBox.Show("Debe ingresar una cantidad válida", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            
-            if(existe(cboIngredientes.Text))
+            else if (Existe(cboIngredientes.Text))
+            {
                 MessageBox.Show("Este ingrediente ya está cargado.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
             DataRowView item = (DataRowView)cboIngredientes.SelectedItem;
             int ingrId = Convert.ToInt32(item.Row.ItemArray[0]);
             string nombre = item.Row.ItemArray[1].ToString();
 
-            Ingrediente i = new Ingrediente(ingrId, nombre, 0);
+            Ingrediente i = new Ingrediente();
+            i.Nombre = nombre;
+            i.IngredienteId = ingrId;
+
             int cant = Convert.ToInt32(numCantidad.Value);
-            DetalleReceta detalle = new DetalleReceta(i, cant);
+            DetalleReceta detalle = new DetalleReceta();
+            detalle.Cantidad = cant;
+            detalle.Ingrediente = i;
 
             nueva.AgregarDetalle(detalle);
 
@@ -89,12 +96,12 @@ namespace RecetasSLN.presentación
 
             TotalIngredientes();
         }
-        private bool existe(string text)
+        private bool Existe(string text)
         {
             foreach (DataGridViewRow fila in dgvIngredientes.Rows)
             {
                 if (fila.Cells["colIngredientes"].Value.Equals(text))
-                   return true;
+                    return true;
             }
             return false;
         }
@@ -126,14 +133,14 @@ namespace RecetasSLN.presentación
                 txtNombre.Focus();
                 return;
             }
-            nueva.RecetaNro = RecetaDao.ObtenerInstancia().ProximaReceta();
+            nueva.RecetaNro = servicio.ProximaReceta();
             nueva.Nombre = txtNombre.Text;
             nueva.Cheff = txtCheff.Text;
             nueva.TipoReceta = Convert.ToInt32(cboTipoRecetas.SelectedIndex);
-            if (RecetaDao.ObtenerInstancia().ConfirmarTransaccion(nueva))
+            if (servicio.ConfirmarTransaccion(nueva))
             {
                 MessageBox.Show("Receta guardada");
-                limpiar();
+                Limpiar();
 
             }
             else
@@ -144,7 +151,7 @@ namespace RecetasSLN.presentación
 
         private void btnCancelar_Click_1(object sender, EventArgs e)
         {
-            limpiar();
+            Limpiar();
         }
 
         private void dgvIngredientes_CellContentClick(object sender, DataGridViewCellEventArgs e)

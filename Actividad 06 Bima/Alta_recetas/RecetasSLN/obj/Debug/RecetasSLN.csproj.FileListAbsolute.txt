@@ -29,3 +29,14 @@ Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.
 Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.CoreCompileInputs.cache
 Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.exe
 Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.pdb
+Z:\TUP\C2\Prog\Actividades\Actividad 06 Bima\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.AssemblyReference.cache
+Z:\TUP\C2\Prog\Actividades\Actividad 06 Bima\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.SuggestedBindingRedirects.cache
+Z:\TUP\C2\Prog\Actividades\Actividad 06 Bima\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.presentación.FrmAltaRecetas.resources
+Z:\TUP\C2\Prog\Actividades\Actividad 06 Bima\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.Properties.Resources.resources
+Z:\TUP\C2\Prog\Actividades\Actividad 06 Bima\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.GenerateResource.cache
+Z:\TUP\C2\Prog\Actividades\Actividad 06 Bima\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.CoreCompileInputs.cache
+Z:\TUP\C2\Prog\Actividades\Actividad 06 Bima\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.exe
+Z:\TUP\C2\Prog\Actividades\Actividad 06 Bima\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.pdb
+Z:\TUP\C2\Prog\Actividades\Actividad 06 Bima\Alta_recetas\RecetasSLN\bin\Debug\RecetasSLN.exe.config
+Z:\TUP\C2\Prog\Actividades\Actividad 06 Bima\Alta_recetas\RecetasSLN\bin\Debug\RecetasSLN.exe
+Z:\TUP\C2\Prog\Actividades\Actividad 06 Bima\Alta_recetas\RecetasSLN\bin\Debug\RecetasSLN.pdb

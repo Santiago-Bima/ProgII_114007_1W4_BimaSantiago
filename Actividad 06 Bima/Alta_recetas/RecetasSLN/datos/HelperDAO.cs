@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
+﻿using RecetasSLN.dominio;
+using System;
 using System.Data;
-using RecetasSLN.dominio;
+using System.Data.SqlClient;
 
 namespace RecetasSLN.datos
 {
-    internal class RecetaDao : ConexionDB
+    internal class HelperDAO : ConexionDB
     {
-        private static RecetaDao instancia;
-        
-        public static RecetaDao ObtenerInstancia()
+        private static HelperDAO instancia;
+
+        public static HelperDAO ObtenerInstancia()
         {
-            if(instancia == null) instancia = new RecetaDao();
+            if (instancia == null) instancia = new HelperDAO();
             return instancia;
         }
-        
+
         public DataTable ConsultarDB(string sp)
         {
             DataTable tabla = new DataTable();
@@ -31,13 +27,15 @@ namespace RecetasSLN.datos
         public int ProximaReceta()
         {
             SqlCommand cmd = Conectar("SP_Proximo_ID");
-            SqlParameter pOut = new SqlParameter();
-            pOut.ParameterName = "@Next";
-            pOut.DbType = DbType.Int32;
-            pOut.Direction = ParameterDirection.Output;
+            SqlParameter pOut = new SqlParameter
+            {
+                ParameterName = "@Next",
+                DbType = DbType.Int32,
+                Direction = ParameterDirection.Output
+            };
             cmd.Parameters.Add(pOut);
             cmd.ExecuteNonQuery();
-            Desconectar();
+            cnn.Close();
             try
             {
                 return (int)pOut.Value;
@@ -66,7 +64,7 @@ namespace RecetasSLN.datos
                 {
                     SqlCommand cmdReceta = Conectar("sp_insertar_detalles");
                     cmdReceta.Parameters.AddWithValue("@id_receta", recetaNumero);
-                    cmdReceta.Parameters.AddWithValue("@id_ingrediente", d.ingrediente);
+                    cmdReceta.Parameters.AddWithValue("@id_ingrediente", d.Ingrediente);
                     cmdReceta.Parameters.AddWithValue("@cantidad", d.Cantidad);
                     cmdReceta.ExecuteNonQuery();
                 }
@@ -80,7 +78,7 @@ namespace RecetasSLN.datos
 
             finally
             {
-                Desconectar();
+                cnn.Close();
             }
 
             return ok;
