@@ -1,0 +1,31 @@
+C:\Users\marti\source\repos\Alta_recetas\RecetasSLN\bin\Debug\RecetasSLN.exe.config
+C:\Users\marti\source\repos\Alta_recetas\RecetasSLN\bin\Debug\RecetasSLN.exe
+C:\Users\marti\source\repos\Alta_recetas\RecetasSLN\bin\Debug\RecetasSLN.pdb
+C:\Users\marti\source\repos\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.AssemblyReference.cache
+C:\Users\marti\source\repos\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.Frm_Alta.resources
+C:\Users\marti\source\repos\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.Properties.Resources.resources
+C:\Users\marti\source\repos\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.GenerateResource.cache
+C:\Users\marti\source\repos\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.CoreCompileInputs.cache
+C:\Users\marti\source\repos\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.exe
+C:\Users\marti\source\repos\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.pdb
+C:\Users\marti\Documents\Nuevo programa\General\Parcial Recuperatorio\Alta_recetas\RecetasSLN\bin\Debug\RecetasSLN.exe.config
+C:\Users\marti\Documents\Nuevo programa\General\Parcial Recuperatorio\Alta_recetas\RecetasSLN\bin\Debug\RecetasSLN.exe
+C:\Users\marti\Documents\Nuevo programa\General\Parcial Recuperatorio\Alta_recetas\RecetasSLN\bin\Debug\RecetasSLN.pdb
+C:\Users\marti\Documents\Nuevo programa\General\Parcial Recuperatorio\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.AssemblyReference.cache
+C:\Users\marti\Documents\Nuevo programa\General\Parcial Recuperatorio\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.presentación.FrmConsultarRecetas.resources
+C:\Users\marti\Documents\Nuevo programa\General\Parcial Recuperatorio\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.Properties.Resources.resources
+C:\Users\marti\Documents\Nuevo programa\General\Parcial Recuperatorio\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.GenerateResource.cache
+C:\Users\marti\Documents\Nuevo programa\General\Parcial Recuperatorio\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.CoreCompileInputs.cache
+C:\Users\marti\Documents\Nuevo programa\General\Parcial Recuperatorio\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.exe
+C:\Users\marti\Documents\Nuevo programa\General\Parcial Recuperatorio\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.pdb
+Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\bin\Debug\RecetasSLN.exe.config
+Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\bin\Debug\RecetasSLN.exe
+Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\bin\Debug\RecetasSLN.pdb
+Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.AssemblyReference.cache
+Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.SuggestedBindingRedirects.cache
+Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.presentación.FrmAltaRecetas.resources
+Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.Properties.Resources.resources
+Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.GenerateResource.cache
+Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.csproj.CoreCompileInputs.cache
+Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.exe
+Z:\TUP\C2\Prog\Actividad 06\Alta_recetas\RecetasSLN\obj\Debug\RecetasSLN.pdb
