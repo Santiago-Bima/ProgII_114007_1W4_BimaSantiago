@@ -171,6 +171,7 @@
             // 
             // dgvIngredientes
             // 
+            this.dgvIngredientes.AllowUserToAddRows = false;
             this.dgvIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvIngredientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colId,
@@ -183,6 +184,7 @@
             this.dgvIngredientes.RowTemplate.Height = 28;
             this.dgvIngredientes.Size = new System.Drawing.Size(706, 220);
             this.dgvIngredientes.TabIndex = 14;
+            this.dgvIngredientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientes_CellContentClick_1);
             // 
             // colId
             // 

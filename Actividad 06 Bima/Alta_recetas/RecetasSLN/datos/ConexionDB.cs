@@ -5,7 +5,7 @@ namespace RecetasSLN.datos
 {
     internal class ConexionDB
     {
-        protected SqlConnection cnn = new SqlConnection(@"Data Source=DESKTOP-NJSKJPR\SQLEXPRESS;Initial Catalog=recetas_db;Integrated Security=True");
+        protected SqlConnection cnn = new SqlConnection(@"Data Source=SANTIPC\SQLEXPRESS;Initial Catalog=recetas_db;Integrated Security=True");
 
 
         public SqlCommand Conectar(string sp)

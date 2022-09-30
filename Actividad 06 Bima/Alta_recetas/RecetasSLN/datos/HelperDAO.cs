@@ -46,28 +46,33 @@ namespace RecetasSLN.datos
             }
         }
 
-        public bool ConfirmarTransaccion(Receta oReceta)
+        public bool ConfirmarTransaccion(Receta receta)
         {
             bool ok = true;
             SqlTransaction trs = null;
 
             try
             {
-                SqlCommand cmd = Conectar("SP_insertar_receta");
-                cmd.Parameters.AddWithValue("@tipo_receta", oReceta.TipoReceta);
-                cmd.Parameters.AddWithValue("@nombre", oReceta.Nombre);
-                cmd.Parameters.AddWithValue("@cheff", oReceta.Cheff);
-                cmd.ExecuteNonQuery();
-                int recetaNumero = ProximaReceta() + 1;
+                cnn.Open();
+                trs = cnn.BeginTransaction();
 
-                foreach (DetalleReceta d in oReceta.lDetalles)
+                SqlCommand cmd = new SqlCommand("sp_insertar_receta", cnn, trs);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@tipo_receta", receta.TipoReceta);
+                cmd.Parameters.AddWithValue("@nombre", receta.Nombre);
+                cmd.Parameters.AddWithValue("@cheff", receta.Cheff);
+                cmd.ExecuteNonQuery();
+
+                foreach (DetalleReceta d in receta.lDetalles)
                 {
-                    SqlCommand cmdReceta = Conectar("sp_insertar_detalles");
-                    cmdReceta.Parameters.AddWithValue("@id_receta", recetaNumero);
-                    cmdReceta.Parameters.AddWithValue("@id_ingrediente", d.Ingrediente);
-                    cmdReceta.Parameters.AddWithValue("@cantidad", d.Cantidad);
-                    cmdReceta.ExecuteNonQuery();
+                    SqlCommand cmdDetalle = new SqlCommand("SP_INSERTAR_DETALLES", cnn, trs);
+                    cmdDetalle.CommandType = CommandType.StoredProcedure;
+                    cmdDetalle.Parameters.AddWithValue("@id_receta", receta.RecetaNro);
+                    cmdDetalle.Parameters.AddWithValue("@id_ingrediente", d.Ingrediente.IngredienteId);
+                    cmdDetalle.Parameters.AddWithValue("@cantidad", d.Cantidad);
+                    cmdDetalle.ExecuteNonQuery();
                 }
+
                 trs.Commit();
             }
             catch (Exception)

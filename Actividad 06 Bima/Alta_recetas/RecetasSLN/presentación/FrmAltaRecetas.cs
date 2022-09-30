@@ -36,7 +36,7 @@ namespace RecetasSLN.presentación
 
         private void FrmAltaRecetas_Load(object sender, EventArgs e)
         {
-            CargarCombo();
+          CargarCombo();
             Limpiar();
         }
         private void Limpiar()
@@ -71,10 +71,17 @@ namespace RecetasSLN.presentación
                 MessageBox.Show("Debe ingresar una cantidad válida", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            else if (Existe(cboIngredientes.Text))
+            foreach (DataGridViewRow fila in dgvIngredientes.Rows)
             {
-                MessageBox.Show("Este ingrediente ya está cargado.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                if (fila.Cells["colIngredientes"].Value != null)
+                {
+                    if (fila.Cells["colIngredientes"].Value.ToString().Equals(cboIngredientes.Text))
+                    {
+                        MessageBox.Show("El ingrediente ya esta agregado", "AVISO", MessageBoxButtons.OK);
+                        cboIngredientes.Focus();
+                        return;
+                    }
+                }
             }
 
             DataRowView item = (DataRowView)cboIngredientes.SelectedItem;
@@ -95,15 +102,6 @@ namespace RecetasSLN.presentación
             dgvIngredientes.Rows.Add(new object[] { ingrId, nombre, cant });
 
             TotalIngredientes();
-        }
-        private bool Existe(string text)
-        {
-            foreach (DataGridViewRow fila in dgvIngredientes.Rows)
-            {
-                if (fila.Cells["colIngredientes"].Value.Equals(text))
-                    return true;
-            }
-            return false;
         }
 
         private void TotalIngredientes()
@@ -137,6 +135,7 @@ namespace RecetasSLN.presentación
             nueva.Nombre = txtNombre.Text;
             nueva.Cheff = txtCheff.Text;
             nueva.TipoReceta = Convert.ToInt32(cboTipoRecetas.SelectedIndex);
+
             if (servicio.ConfirmarTransaccion(nueva))
             {
                 MessageBox.Show("Receta guardada");
@@ -154,9 +153,21 @@ namespace RecetasSLN.presentación
             Limpiar();
         }
 
-        private void dgvIngredientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvIngredientes_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgvIngredientes.CurrentCell.ColumnIndex == 3)
+            {
+                try
+                {
+                    nueva.QuitarDetalle(dgvIngredientes.CurrentRow.Index);
+                    dgvIngredientes.Rows.Remove(dgvIngredientes.CurrentRow);
+                    TotalIngredientes();
+                }
+                catch (Exception)
+                {
 
+                }
+            }
         }
     }
 }
