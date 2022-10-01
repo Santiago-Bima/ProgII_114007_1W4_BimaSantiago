@@ -1,13 +1,12 @@
-﻿using System.Data;
-using System.Runtime.Remoting.Messaging;
-using RecetasSLN.datos;
-using RecetasSLN.dominio;
+﻿using RecetasSLN.dominio;
+using System.Data;
 
 namespace RecetasSLN.datos.Interfaces
 {
     internal class RecetaDAO : IRecetaDAO
     {
-        public int ProximaReceta() {
+        public int ProximaReceta()
+        {
             return HelperDAO.ObtenerInstancia().ProximaReceta();
         }
 

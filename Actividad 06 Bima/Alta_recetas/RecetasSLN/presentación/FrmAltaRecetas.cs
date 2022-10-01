@@ -10,16 +10,9 @@ namespace RecetasSLN.presentación
 {
     public partial class FrmAltaRecetas : Form
     {
-        private static FrmAltaRecetas instancia;
         private Receta nueva;
         private IServicio servicio;
         private FabricaServicio oFabrica;
-
-        public static FrmAltaRecetas ObtenerInstancia()
-        {
-            if (instancia == null) instancia = new FrmAltaRecetas();
-            return instancia;
-        }
         public FrmAltaRecetas()
         {
             InitializeComponent();
