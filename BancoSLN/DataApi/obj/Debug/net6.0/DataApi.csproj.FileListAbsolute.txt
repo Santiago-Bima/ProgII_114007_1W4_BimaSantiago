@@ -1,0 +1,12 @@
+Z:\TUP\C2\Prog\BancoSLN\DataApi\bin\Debug\net6.0\DataApi.deps.json
+Z:\TUP\C2\Prog\BancoSLN\DataApi\bin\Debug\net6.0\DataApi.dll
+Z:\TUP\C2\Prog\BancoSLN\DataApi\bin\Debug\net6.0\DataApi.pdb
+Z:\TUP\C2\Prog\BancoSLN\DataApi\obj\Debug\net6.0\DataApi.csproj.AssemblyReference.cache
+Z:\TUP\C2\Prog\BancoSLN\DataApi\obj\Debug\net6.0\DataApi.GeneratedMSBuildEditorConfig.editorconfig
+Z:\TUP\C2\Prog\BancoSLN\DataApi\obj\Debug\net6.0\DataApi.AssemblyInfoInputs.cache
+Z:\TUP\C2\Prog\BancoSLN\DataApi\obj\Debug\net6.0\DataApi.AssemblyInfo.cs
+Z:\TUP\C2\Prog\BancoSLN\DataApi\obj\Debug\net6.0\DataApi.csproj.CoreCompileInputs.cache
+Z:\TUP\C2\Prog\BancoSLN\DataApi\obj\Debug\net6.0\DataApi.dll
+Z:\TUP\C2\Prog\BancoSLN\DataApi\obj\Debug\net6.0\refint\DataApi.dll
+Z:\TUP\C2\Prog\BancoSLN\DataApi\obj\Debug\net6.0\DataApi.pdb
+Z:\TUP\C2\Prog\BancoSLN\DataApi\obj\Debug\net6.0\ref\DataApi.dll
